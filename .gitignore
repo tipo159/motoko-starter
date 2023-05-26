@@ -9,6 +9,8 @@
 
 # dfx temporary files
 .dfx/
+.config/
+.cache/
 
 # generated files
 src/declarations/
