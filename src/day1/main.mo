@@ -1,4 +1,5 @@
 import Float "mo:base/Float";
+import Option "mo:base/Option";
 
 actor class Calculator() {
   // Step 1 -  Define a mutable variable called `counter`.
@@ -23,9 +24,13 @@ actor class Calculator() {
   };
 
   // Step 5 - Implement div
-  public func div(x : Float) : async Float {
-    counter /= x;
-    return counter;
+  public func div(x : Float) : async ?Float {
+    if (x != 0.0) {
+      counter /= x;
+      return ?counter;
+    } else {
+      return null;
+    } 
   };
 
   // Step 6 - Implement reset
