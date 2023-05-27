@@ -3,12 +3,12 @@ module {
   public type Content = {
     #Text : Text;
     #Image : Blob;
-    #Survey : Survey;
+    #Video : Blob;
   };
 
   public type Message = {
-    content : Content;
     vote : Int;
+    content : Content;
     creator : Principal;
   };
 };
