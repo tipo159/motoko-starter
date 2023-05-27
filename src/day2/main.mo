@@ -55,7 +55,7 @@ actor class Homework() {
   // Delete a homework task by id
   public shared func deleteHomework(id : Nat) : async Result.Result<(), Text> {
     if (id < HomeworkDiary.size()) {
-      let homework = HomeworkDiary.remove(id);
+      ignore HomeworkDiary.remove(id);
       return #ok(());
     } else {
       return #err("not found");
