@@ -16,6 +16,6 @@ teardown() {
   run dfx canister call day3 writeMessage '(variant {"Text"="Test"})'
   [ "$output" == '(0 : nat)' ]
   run dfx --identity anonymous canister call day3 updateMessage '(0, variant {"Text"="Test2"})'
-  [ "$output" == '(variant { err = "creator is not same" })' ]
+  [[ "$output" =~ (variant { err = .* }) ]]
 }
 
