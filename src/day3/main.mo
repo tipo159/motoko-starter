@@ -18,7 +18,7 @@ actor class StudentWall() {
 
   var messageId : Nat = 0;
 
-  func hash(n: Nat) : Hash.Hash {
+  func hash(n : Nat) : Hash.Hash {
     return Text.hash(Nat.toText(n));
   };
 
@@ -45,7 +45,7 @@ actor class StudentWall() {
         return #ok(m);
       };
       case null {
-        return #err("not founr");
+        return #err("not found");
       };
     };
   };
@@ -67,7 +67,7 @@ actor class StudentWall() {
         return #ok(());
       };
       case null {
-        return #err("not founr");
+        return #err("not found");
       };
     };
   };
@@ -80,7 +80,7 @@ actor class StudentWall() {
         return #ok(());
       };
       case null {
-        return #err("not founr");
+        return #err("not found");
       };
     };
   };
@@ -99,7 +99,7 @@ actor class StudentWall() {
         return #ok(());
       };
       case null {
-        return #err("not founr");
+        return #err("not found");
       };
     };
   };
@@ -117,7 +117,7 @@ actor class StudentWall() {
         return #ok(());
       };
       case null {
-        return #err("not founr");
+        return #err("not found");
       };
     };
   };
