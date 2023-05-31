@@ -60,6 +60,21 @@ let success = run([
           };
         },
       ),
+      it(
+        "should return an error on the second airdrop",
+        do {
+          let response = await day4Actor.airdrop();
+          switch (response) {
+            case (#ok) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              true;
+            };
+          };
+        },
+      ),
+
     ],
   ),
   describe(
