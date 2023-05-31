@@ -1,7 +1,6 @@
 import Debug "mo:base/Debug";
 import Blob "mo:base/Blob";
 import MoSpec "mo:mospec/MoSpec";
-import Bool "mo:base/Bool";
 
 import Main "main";
 import Type "Types";
