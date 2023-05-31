@@ -1,6 +1,7 @@
 import Debug "mo:base/Debug";
 import Blob "mo:base/Blob";
 import MoSpec "mo:mospec/MoSpec";
+import Bool "mo:base/Bool";
 
 import Main "main";
 import Type "Types";
@@ -48,6 +49,20 @@ let success = run([
           };
         },
       ),
+      it(
+        "should return an error message, if the messageId is invalid",
+        do {
+          let response = await day3Actor.getMessage(1);
+          switch (response) {
+            case (#ok(message)) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              assertTrue(true);
+            };
+          };
+        },
+      ),
     ],
   ),
   describe(
@@ -68,6 +83,21 @@ let success = run([
           };
         },
       ),
+      it(
+        "should return an error message, if the messageId is invalid",
+        do {
+          let newContent : Type.Content = #Text("Test2");
+          let response = await day3Actor.updateMessage(1, newContent);
+          switch (response) {
+            case (#ok(message)) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              assertTrue(true);
+            };
+          };
+        },
+      ),
     ],
   ),
   describe(
@@ -83,6 +113,20 @@ let success = run([
             };
             case (#err(message)) {
               Debug.trap(message);
+            };
+          };
+        },
+      ),
+      it(
+        "should return an error message, if the messageId is invalid",
+        do {
+          let response = await day3Actor.deleteMessage(1);
+          switch (response) {
+            case (#ok(message)) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              assertTrue(true);
             };
           };
         },
@@ -115,6 +159,20 @@ let success = run([
           };
         },
       ),
+      it(
+        "should return an error message, if the messageId is invalid",
+        do {
+          let response = await day3Actor.upVote(0);
+          switch (response) {
+            case (#ok(message)) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              assertTrue(true);
+            };
+          };
+        },
+      ),
     ],
   ),
   describe(
@@ -142,6 +200,20 @@ let success = run([
           };
         },
       ),
+      it(
+        "should return an error message, if the messageId is invalid",
+        do {
+          let response = await day3Actor.downVote(0);
+          switch (response) {
+            case (#ok(message)) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              assertTrue(true);
+            };
+          };
+        },
+      ),
     ],
   ),
   describe(
@@ -150,8 +222,9 @@ let success = run([
       it(
         "should get all messages on Student Wall",
         do {
+          ignore await day3Actor.writeMessage(contentTest);
           let messages = await day3Actor.getAllMessages();
-          assertTrue(messages.size() == 1);
+          assertTrue(messages.size() == 2);
         },
       ),
     ],
@@ -160,13 +233,22 @@ let success = run([
     "#getAllMessagesRanked",
     [
       it(
-        "should get all messages on Student Wall",
+        "should get all messages on Student Wall, ordered by the number of votes in descending order",
         do {
           let id = await day3Actor.writeMessage(contentTest);
           ignore await day3Actor.upVote(id);
           ignore await day3Actor.upVote(id);
+          ignore await day3Actor.upVote(2);
           let messages = await day3Actor.getAllMessagesRanked();
-          assertTrue(messages[0].vote == 2);
+          assertTrue(
+            Bool.logand(
+              messages.size() == 3,
+              Bool.logand(
+                messages[0].vote == 2,
+                Bool.logand(messages[1].vote == 1, messages[2].vote == 0),
+              ),
+            )
+          );
         },
       ),
     ],
