@@ -241,13 +241,7 @@ let success = run([
           ignore await day3Actor.upVote(2);
           let messages = await day3Actor.getAllMessagesRanked();
           assertTrue(
-            Bool.logand(
-              messages.size() == 3,
-              Bool.logand(
-                messages[0].vote == 2,
-                Bool.logand(messages[1].vote == 1, messages[2].vote == 0),
-              ),
-            )
+            messages.size() == 3 and messages[0].vote == 2 and messages[1].vote == 1 and messages[2].vote == 0
           );
         },
       ),
