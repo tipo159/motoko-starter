@@ -36,14 +36,7 @@ actor class MotoCoin() {
   // Returns the default transfer fee
   public query func balanceOf(account : Account) : async (Nat) {
     let balance = ledger.get(account);
-    switch balance {
-      case (?b) {
-        return b;
-      };
-      case null {
-        return 0;
-      };
-    };
+    return Option.get(balance, 0);
   };
 
   // Transfer tokens to another account
