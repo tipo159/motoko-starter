@@ -134,6 +134,28 @@ let success = run([
           };
         },
       ),
+        it(
+        "should return error, if the caller has not enough token",
+        do {
+          let senderAccount = {
+            owner = Principal.fromText("wo5qg-ysjiq-5da");
+            subaccount = null;
+          };
+          let receiverAccount = {
+            owner = Principal.fromText("un4fu-tqaaa-aaaab-qadjq-cai");
+            subaccount = null;
+          };
+          let response = await day4Actor.transfer(senderAccount, receiverAccount, 150);
+          switch (response) {
+            case (#ok) {
+              Debug.trap("");
+            };
+            case (#err(message)) {
+              true;
+            };
+          };
+        },
+      ),
     ],
   ),
 ]);
