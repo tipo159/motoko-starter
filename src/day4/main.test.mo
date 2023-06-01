@@ -74,7 +74,6 @@ let success = run([
           };
         },
       ),
-
     ],
   ),
   describe(
@@ -134,7 +133,7 @@ let success = run([
           };
         },
       ),
-        it(
+      it(
         "should return error, if the caller has not enough token",
         do {
           let senderAccount = {
