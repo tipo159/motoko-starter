@@ -84,9 +84,9 @@ actor class MotoCoin() {
   public func airdrop() : async Result.Result<(), Text> {
     if (not airdropped) {
       let bootcampActor = await BootcampLocalActor.BootcampLocalActor();
-      // let bootcampActor : actor {
+      // let bootcampActor = actor ("rww3b-zqaaa-aaaam-abioa-cai") : actor {
       //   getAllStudentsPrincipal : shared () -> async [Principal];
-      // } = actor ("rww3b-zqaaa-aaaam-abioa-cai");
+      // };
       let principals = await bootcampActor.getAllStudentsPrincipal();
       airdropped := true;
       if (Array.size<Principal>(principals) != 0) {
